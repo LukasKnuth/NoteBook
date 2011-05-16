@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="org.knuth.notebook"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="8" />
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".Main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Other Activitys -->
+        <activity android:name=".DisplayNote" 
+        	android:label="@string/label_display_note" />
+        <activity android:name=".NewNote"
+        	android:label="@string/label_new_note" />
+        <activity android:name=".EditNote"
+        	android:label="@string/label_edit_note" />
+        
+        <!-- Search Activity -->
+        <activity android:name=".SearchNotes">
+        	<intent-filter>
+        		<action android:name="android.intent.action.SEARCH" />
+        		<category android:name="android.intent.category.DEFAULT" />
+        	</intent-filter>
+        	<meta-data android:name="android.app.searchable"
+        		android:resource="@xml/searchable" />
+        </activity>
+        <!-- Needed to make the Search work! -->
+        <meta-data android:name="android.app.default_searchable"
+               android:value=".SearchNotes" />
+
+    </application>
+</manifest>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Headline-Editor -->
+	<dimen name="headline_size">60dp</dimen>
+	<!-- Content-Editor -->
+	<dimen name="content_size">180dp</dimen>
+</resources>
