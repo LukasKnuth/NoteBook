@@ -63,10 +63,10 @@ public class Main extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id){
     	super.onListItemClick(l, v, position, id);
-    	// Zwei-Reihen List Item beinhaltet zwei TextViews:
+    	// Double-Row List Item with the Headline and ID:
     	TwoLineListItem curr = (TwoLineListItem) v;
     	TextView curr_line = (TextView) curr.getText2();
-    	// Aus zweitem TextView wert auslesen:
+    	// Get the Value from the Second TextView:
     	Log.d("OnlyLog", curr_line.getText().toString());
     	// Intent:
     	Intent i = new Intent(this, DisplayNote.class);
