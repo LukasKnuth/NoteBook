@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -15,9 +14,16 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.TwoLineListItem;
 
+/**
+ * This Activity presents the search-results.
+ * @author Lukas Knuth
+ * 
+ */
 public class SearchNotes extends ListActivity{
 	
+	/** The Database Helper-class instance which is used to connect to the SQLite DB */
 	private BookDatabase db_con;
+	/** The Search-query passed by the Android Search interface */
 	private String query;
 	
 	@Override
@@ -38,31 +44,40 @@ public class SearchNotes extends ListActivity{
         }
 	}
 	
+	/**
+	 * Searches the Database for the entered Search-Query and presents the results in a ListView.
+	 */
 	private void searchAndDisplay(){
-		Log.d("OnlyLog", "Query for search is:"+query );
 		SQLiteDatabase db = db_con.getReadableDatabase();
-		final Cursor c = db.rawQuery(
-				"SELECT headline, id as '_id' FROM entry WHERE " +
+		try {
+			Cursor c = db.rawQuery("SELECT headline, id as '_id' FROM entry WHERE " +
 				"(headline LIKE ?) OR (content LIKE ?) " +
 				"ORDER BY id DESC",
 				new String[] {"%"+query+"%", "%"+query+"%"});
-		final ListAdapter searchAdapter = new SimpleCursorAdapter(
-				this, 
-    			android.R.layout.simple_list_item_2, c, 
-    			new String[] {"headline", "_id"}, 
-    			new int[] {android.R.id.text1, android.R.id.text2});
-		this.setListAdapter(searchAdapter);
-		db.close();
+			final ListAdapter searchAdapter = new SimpleCursorAdapter(
+					this, 
+	    			android.R.layout.simple_list_item_2, c, 
+	    			new String[] {"headline", "_id"}, 
+	    			new int[] {android.R.id.text1, android.R.id.text2});
+			this.setListAdapter(searchAdapter);
+		} finally {
+			db.close();
+		}
 	}
 	
+	/**
+	 * Opens the Database Connection.
+	 */
 	@Override
     public void onStart(){
     	super.onStart();
-    	Log.d("OnlyLog", "In!");
     	db_con = new BookDatabase(getApplicationContext());
         searchAndDisplay();
     }
 	
+	/**
+	 * Open the selected Note in the DisplayNote Activity.
+	 */
 	@Override
     protected void onListItemClick(ListView l, View v, int position, long id){
     	super.onListItemClick(l, v, position, id);
@@ -75,6 +90,9 @@ public class SearchNotes extends ListActivity{
     	this.startActivity(i);
     }
 	
+	/**
+	 * Closes the Database Connection.
+	 */
 	@Override
     protected void onPause(){
     	db_con.close();

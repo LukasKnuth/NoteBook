@@ -8,18 +8,23 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This Activity displays the full selected note.
+ * @author Lukas Knuth
+ *
+ */
 public class DisplayNote extends Activity{
 	
+	/** The Database Helper-class instance which is used to connect to the SQLite DB */
 	private BookDatabase db_con;
+	/** The ID of the note which is currently displayed by this Activity */
 	private String displayed_id;
 	
-	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +41,12 @@ public class DisplayNote extends Activity{
         }
     }
     
+    /**
+     * Opens the Database Connection.
+     */
     @Override
     public void onStart(){
     	super.onStart();
-    	Log.d("OnlyLog", "In Display...");
     	if (displayed_id != null){
     		// Display Content:
     		db_con = new BookDatabase(getApplicationContext());
@@ -53,6 +60,9 @@ public class DisplayNote extends Activity{
     	return super.onCreateOptionsMenu(menu);
     }
     
+    /**
+     * Choose to neither delete or edit the currently shown note.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	switch (item.getItemId()){
@@ -103,7 +113,7 @@ public class DisplayNote extends Activity{
     }
     
     /**
-     * Read Contents from the Database and Display it
+     * Reads the content from the Database and displays it
      */
     private void displayContent(){
     	// Get Views:
@@ -131,9 +141,11 @@ public class DisplayNote extends Activity{
     	}
     }
     
+    /**
+     * Closes the Database Connection.
+     */
     @Override
     protected void onPause(){
-    	Log.d("OnlyLog", "Out Display...");
     	db_con.close();
     	super.onPause();
     }

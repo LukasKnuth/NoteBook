@@ -16,8 +16,14 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.TwoLineListItem;
 
+/**
+ * The Main Activity of the Application which shows all available Notes in a ListView.
+ * @author Lukas Knuth
+ *
+ */
 public class Main extends ListActivity {
 	
+	/** The Database Helper-class instance which is used to connect to the SQLite DB */
 	private BookDatabase db_con;
 	
     /** Called when the activity is first created. */
@@ -35,7 +41,7 @@ public class Main extends ListActivity {
     }
     
     /**
-     * Populate the List with entrys:
+     * Opens the Database-Connection and calls the population-class
      */
     @Override
     public void onStart(){
@@ -44,22 +50,29 @@ public class Main extends ListActivity {
         listNotes();
     }
     
+    /**
+     * Gets the Notes from the Database and puts them on the ListView.
+     */
     private void listNotes(){
     	SQLiteDatabase db = db_con.getReadableDatabase();
-    	final Cursor c = db.rawQuery("SELECT headline, id as '_id' " +
-    			"FROM entry " +
-    			"ORDER BY id DESC", null);
-    	this.startManagingCursor(c);
-    	final ListAdapter noteAdapter = new SimpleCursorAdapter(
-    			this, 
-    			android.R.layout.simple_list_item_2, c, 
-    			new String[] {"headline", "_id"}, 
-    			new int[] {android.R.id.text1, android.R.id.text2});
-    	this.setListAdapter(noteAdapter);
-    	// DONT CLOSE THE CURSOR!!!
-    	db.close();
+    	try {
+        	Cursor c = db.rawQuery("SELECT headline, id as '_id' " +
+    				"FROM entry " +
+        			"ORDER BY id DESC", null);
+        	final ListAdapter noteAdapter = new SimpleCursorAdapter(
+        			this, 
+        			android.R.layout.simple_list_item_2, c, 
+        			new String[] {"headline", "_id"}, 
+        			new int[] {android.R.id.text1, android.R.id.text2});
+        	this.setListAdapter(noteAdapter);
+    	} finally {
+    		db.close();
+    	}
     }
     
+    /**
+     * Opens the selected Note in the DisplayNote-Activity.
+     */
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id){
     	super.onListItemClick(l, v, position, id);
@@ -74,6 +87,9 @@ public class Main extends ListActivity {
     	this.startActivity(i);
     }
     
+    /**
+     * Closes the Database-Connection.
+     */
     @Override
     protected void onPause(){
     	db_con.close();
@@ -86,6 +102,9 @@ public class Main extends ListActivity {
     	return super.onCreateOptionsMenu(menu);
     }
     
+    /**
+     * Starts the NewNote-Activity to create a new note.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	switch (item.getItemId()){

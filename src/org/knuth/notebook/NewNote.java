@@ -5,23 +5,29 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Activity which allowes the user to create a new Note.
+ * @author Lukas Knuth
+ *
+ */
 public class NewNote extends Activity{
 	
+	/** The Database Helper-class instance which is used to connect to the SQLite DB */
 	private BookDatabase db_con;
 	
-	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_note);
-        db_con = new BookDatabase(getApplicationContext());
     }
     
+    /**
+     * Close the Database-connection.
+     */
     @Override
     protected void onPause(){
     	db_con.close();
@@ -29,8 +35,17 @@ public class NewNote extends Activity{
     }
     
     /**
-     * Called by the Save-Button, saves the note to the Database.
-     * @param view
+     * Open the Database-connection.
+     */
+    @Override
+    public void onStart(){
+    	super.onStart();
+    	db_con = new BookDatabase(getApplicationContext());
+    }
+    
+    /**
+     * Called by the Save-Button and saves the note to the Database.
+     * @param view The View of the current Activity.
      */
     public void saveNote(View view){
     	// Test if Fields are filled out:
@@ -41,21 +56,23 @@ public class NewNote extends Activity{
     	if (headline_str.length() > 0 && content_str.length() > 0){
     		// In the Database:
     		SQLiteDatabase db = db_con.getWritableDatabase();
-    		SQLiteStatement inset_new = db.compileStatement(
-    				"Insert into entry (headline, content)" +
-    				"values (?,?)");
-    		// Einsetzen:
-    		inset_new.bindString(1, headline_str);
-    		inset_new.bindString(2, content_str);
-    		// Ausführen:
-    		long id = inset_new.executeInsert();
-    		Log.d("OnlyLog", "ID: "+id);
-    		db.close();
-    		// Show the Entry:
-    		Intent i = new Intent(getApplicationContext(), DisplayNote.class);
-    		i.putExtra("entry_id", id+"");
-    		this.startActivity(i);
-    		this.finish();
+    		try {
+    			SQLiteStatement inset_new = db.compileStatement(
+        				"Insert into entry (headline, content)" +
+        				"values (?,?)");
+        		// Einsetzen:
+        		inset_new.bindString(1, headline_str);
+        		inset_new.bindString(2, content_str);
+        		// Ausführen:
+        		long id = inset_new.executeInsert();
+        		// Show the Entry:
+        		Intent i = new Intent(getApplicationContext(), DisplayNote.class);
+        		i.putExtra("entry_id", id+"");
+        		this.startActivity(i);
+        		this.finish();
+    		} finally {
+    			db.close();
+    		}
     	} else {
     		Toast.makeText(this, "Fill out all Fields!", Toast.LENGTH_SHORT).show();
     	}
