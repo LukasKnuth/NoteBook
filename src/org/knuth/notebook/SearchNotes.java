@@ -39,13 +39,13 @@ public class SearchNotes extends ListActivity{
 	}
 	
 	private void searchAndDisplay(){
+		Log.d("OnlyLog", "Query for search is:"+query );
 		SQLiteDatabase db = db_con.getReadableDatabase();
 		final Cursor c = db.rawQuery(
 				"SELECT headline, id as '_id' FROM entry WHERE " +
 				"(headline LIKE ?) OR (content LIKE ?) " +
 				"ORDER BY id DESC",
 				new String[] {"%"+query+"%", "%"+query+"%"});
-		this.startManagingCursor(c);
 		final ListAdapter searchAdapter = new SimpleCursorAdapter(
 				this, 
     			android.R.layout.simple_list_item_2, c, 
@@ -58,6 +58,7 @@ public class SearchNotes extends ListActivity{
 	@Override
     public void onStart(){
     	super.onStart();
+    	Log.d("OnlyLog", "In!");
     	db_con = new BookDatabase(getApplicationContext());
         searchAndDisplay();
     }
@@ -68,8 +69,6 @@ public class SearchNotes extends ListActivity{
     	// Zwei-Reihen List Item beinhaltet zwei TextViews:
     	TwoLineListItem curr = (TwoLineListItem) v;
     	TextView curr_line = (TextView) curr.getText2();
-    	// Aus zweitem TextView wert auslesen:
-    	Log.d("OnlyLog", curr_line.getText().toString());
     	// Intent:
     	Intent i = new Intent(this, DisplayNote.class);
     	i.putExtra("entry_id", curr_line.getText().toString() );

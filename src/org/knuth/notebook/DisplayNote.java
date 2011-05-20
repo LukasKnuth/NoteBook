@@ -39,6 +39,7 @@ public class DisplayNote extends Activity{
     @Override
     public void onStart(){
     	super.onStart();
+    	Log.d("OnlyLog", "In Display...");
     	if (displayed_id != null){
     		// Display Content:
     		db_con = new BookDatabase(getApplicationContext());
@@ -66,7 +67,6 @@ public class DisplayNote extends Activity{
 							@Override
 							public void onClick(DialogInterface dialog, int id) {
 								// Delete Note:
-					        	db_con = new BookDatabase(getApplicationContext());
 					        	SQLiteDatabase db = db_con.getWritableDatabase();
 					        	// Delete:
 					        	SQLiteStatement del_curr = db.compileStatement(
@@ -104,7 +104,6 @@ public class DisplayNote extends Activity{
     
     /**
      * Read Contents from the Database and Display it
-     * @param id
      */
     private void displayContent(){
     	// Get Views:
@@ -120,7 +119,6 @@ public class DisplayNote extends Activity{
         			"WHERE id = ?",
         			new String[] {displayed_id}
         		);
-        	Log.d("OnlyLog", "Query Succses!");
         	// Set values:
         	if (c.moveToNext()){
         		headline.setText(c.getString(0));
@@ -129,12 +127,13 @@ public class DisplayNote extends Activity{
     	} finally {
     		// Close Cursor:
     		c.close();
+    		db.close();
     	}
-    	db.close();
     }
     
     @Override
     protected void onPause(){
+    	Log.d("OnlyLog", "Out Display...");
     	db_con.close();
     	super.onPause();
     }

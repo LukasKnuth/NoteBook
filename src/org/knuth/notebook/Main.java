@@ -40,7 +40,7 @@ public class Main extends ListActivity {
     @Override
     public void onStart(){
     	super.onStart();
-    	db_con = new BookDatabase(getApplicationContext());
+    	db_con = new BookDatabase(this);
         listNotes();
     }
     
