@@ -81,7 +81,7 @@
     	<string name="search_hint">Search for Notes...</string>
     	<!-- No Search results -->
     	<string name="empty_search_note">
-	    	Your Search didnt bring up any hits...
+	    	Your Search didn\'t bring up any hits...
 	    </string>
     	
     <!-- SEARCH-ACTIVITY END -->

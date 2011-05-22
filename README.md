@@ -1,19 +1,21 @@
 # Overview #
-This is a simple NoteBook-Android application. 
+This is a simple Android-NoteBook application. 
 
 ## ToDo List ##
 Things that will or should be improved:
 
 * Add support for Notebooks (Collections)
-* Make it beautiful
 * Add some "Share"-Options
 * Add "Email this"-Support
 * Add Support for Media attached on notes (Photos, Videos, Sound...)
 * Add a "Delete"-Option the the Main-Activity which can delete multiple Notes at once
 * Add some graphics
+* Reminder support for all Notes.
+* Create a Widget
+* Better Search (Mark results in the Text)
 
 ## License ##
-Feel free to fork it, as it is GPL2.
+Feel free to fork, as it is GPL2.
 
 ## Changelog ##
 ### Version 0.2 ###
@@ -21,3 +23,4 @@ Feel free to fork it, as it is GPL2.
 * Added JavaDoc comments.
 * Added the last edit date to the Database.
 * Added a Context Menu to the Main Activity to Show/Edit/Delete the selected Note.
+* Made the Display-, Edit- and New-Note Activity's look better.

@@ -117,14 +117,15 @@ public class DisplayNote extends Activity{
      */
     private void displayContent(){
     	// Get Views:
-    	TextView headline = (TextView) this.findViewById(R.id.display_headline);
-    	TextView content = (TextView) this.findViewById(R.id.display_content);
+    	final TextView headline = (TextView) this.findViewById(R.id.display_headline);
+    	final TextView date = (TextView) this.findViewById(R.id.display_date);
+    	final TextView content = (TextView) this.findViewById(R.id.display_content);
     	// Read:
     	SQLiteDatabase db = db_con.getReadableDatabase();
     	Cursor c = null;
     	try {
         	c = db.rawQuery(
-        			"SELECT headline, content " +
+        			"SELECT headline, edit_date, content " +
         			"FROM entry " +
         			"WHERE id = ?",
         			new String[] {displayed_id+""}
@@ -132,7 +133,8 @@ public class DisplayNote extends Activity{
         	// Set values:
         	if (c.moveToNext()){
         		headline.setText(c.getString(0));
-            	content.setText(c.getString(1));
+        		date.setText(c.getString(1)+" ");
+            	content.setText(c.getString(2));
         	}
     	} finally {
     		// Close Cursor:

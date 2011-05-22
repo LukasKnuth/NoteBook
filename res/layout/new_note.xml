@@ -5,22 +5,13 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
   
-  	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/headline"
-		/>
-	<EditText
+  	<EditText
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/headline"
+		android:hint="@string/headline"
 		/>
 	
-	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/content"
-		/>
 	<EditText
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -28,6 +19,7 @@
 		android:singleLine="false"
 		android:lines="5"
 		android:gravity="top"
+		android:hint="@string/content"
 		/>
 	
 	<Button

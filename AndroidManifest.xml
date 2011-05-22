@@ -23,7 +23,8 @@
         	android:label="@string/label_edit_note" />
         
         <!-- Search Activity -->
-        <activity android:name=".SearchNotes">
+        <activity android:name=".SearchNotes"
+        	android:label="@string/label_search">
         	<intent-filter>
         		<action android:name="android.intent.action.SEARCH" />
         		<category android:name="android.intent.category.DEFAULT" />

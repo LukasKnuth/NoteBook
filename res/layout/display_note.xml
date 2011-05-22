@@ -8,23 +8,32 @@
   <TextView
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
-  	android:text="@string/headline"
-  />
-  <TextView
-  	android:layout_width="fill_parent"
-  	android:layout_height="wrap_content"
   	android:id="@+id/display_headline"
+  	android:textSize="20sp"
+  	android:textStyle="bold"
+  	android:gravity="center_horizontal"
   />
   
   <TextView
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
-  	android:text="@string/content"
+  	android:id="@+id/display_date"
+  	android:text="12sp"
+  	android:textStyle="italic"
+  	android:gravity="right"
   />
-  <TextView
+  
+  <ScrollView 
   	android:layout_width="fill_parent"
-  	android:layout_height="wrap_content"
-  	android:id="@+id/display_content"
-  />
+  	android:layout_height="fill_parent">
+  	<TextView
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="wrap_content"
+	  	android:id="@+id/display_content"
+	  	android:autoLink="all"
+	  	android:textSize="14sp"
+	  	android:typeface="monospace"
+	  />
+  </ScrollView>
 
 </LinearLayout>
