@@ -14,7 +14,7 @@ public class BookDatabase extends SQLiteOpenHelper{
 	/** The Database-File which contains the SQLite Database. */
 	private final static String DATABASE_NAME = "notebook.db";
 	/** The Database-Version. Determines if the Database get's updated or not. */
-	private final static int DATABASE_VERSION = 2;
+	private final static int DATABASE_VERSION = 3;
 
 	/**
 	 * Creates the Database Helper class.
@@ -33,6 +33,7 @@ public class BookDatabase extends SQLiteOpenHelper{
 		db.execSQL("create table entry(" +
 				"headline TEXT," +
 				"content TEXT," +
+				"edit_date DATE," +
 				"id INTEGER PRIMARY KEY AUTOINCREMENT" +
 				")");		
 	}

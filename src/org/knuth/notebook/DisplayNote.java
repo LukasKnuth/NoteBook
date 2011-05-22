@@ -23,7 +23,7 @@ public class DisplayNote extends Activity{
 	/** The Database Helper-class instance which is used to connect to the SQLite DB */
 	private BookDatabase db_con;
 	/** The ID of the note which is currently displayed by this Activity */
-	private String displayed_id;
+	private long displayed_id;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,9 @@ public class DisplayNote extends Activity{
         // Get the ID from the Intend:
         Bundle extras = this.getIntent().getExtras();
         if (extras != null && extras.containsKey("entry_id")){
-        	displayed_id = extras.getString("entry_id");
+        	displayed_id = extras.getLong("entry_id");
         } else {
-        	displayed_id = null;
+        	displayed_id = -1;
         	Toast.makeText(getApplicationContext(),
         		this.getString(R.string.intent_error),
         		Toast.LENGTH_SHORT).show();
@@ -47,7 +47,7 @@ public class DisplayNote extends Activity{
     @Override
     public void onStart(){
     	super.onStart();
-    	if (displayed_id != null){
+    	if (displayed_id != -1){
     		// Display Content:
     		db_con = new BookDatabase(getApplicationContext());
     		displayContent();
@@ -81,7 +81,7 @@ public class DisplayNote extends Activity{
 					        	// Delete:
 					        	SQLiteStatement del_curr = db.compileStatement(
 					        			"DELETE FROM entry WHERE id = ?");
-					        	del_curr.bindString(1, displayed_id);
+					        	del_curr.bindLong(1, displayed_id);
 					        	del_curr.execute();
 					        	db.close();
 					        	// Go back:
@@ -127,7 +127,7 @@ public class DisplayNote extends Activity{
         			"SELECT headline, content " +
         			"FROM entry " +
         			"WHERE id = ?",
-        			new String[] {displayed_id}
+        			new String[] {displayed_id+""}
         		);
         	// Set values:
         	if (c.moveToNext()){

@@ -1,41 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">This is some example-NoteBook...</string>
-    <string name="app_name">NoteBook</string>
-    <!-- Headline -->
-    <string name="headline">Headline</string>
-    <!-- Content -->
-    <string name="content">Content</string>
-    <!-- Save-Button -->
-    <string name="save">Save!</string>
-    <!-- Menu-Create New -->
-    <string name="create_new">Add</string>
-    <!-- Label for Display-Activity -->
-    <string name="label_display_note">Display Note</string>
-    <string name="empty_list_note">
-    	There is currently nothing in your Note-Database.\n
-    	If you\'d like to create a new entry, use the menu and hit "Add"... 
-    </string>
-    <!-- Label for New-Activity -->
-    <string name="label_new_note">New Note</string>
-    <!-- Error on fiering Intent -->
-    <string name="intent_error">Something went wrong with the Intent...</string>
-    <!-- Delete the current Note from the Display-Activity -->
-    <string name="delete_current">Delete this Note</string>
-    <!-- Delete-Current Dialog Stuff: -->
-    <string name="delete_current_dialog">Are you sure that you want to delete this Note?</string>
-    <string name="delete_current_dialog_yes">Yes</string>
-    <string name="delete_current_dialog_no">No</string>
-    <!-- Edit the current Note -->
-    <string name="edit_current">Edit this Note</string>
-    <!-- Edit Note-Activity -->
-    <string name="label_edit_note">Edit Note</string>
-    <string name="edit_note_save">Save changes</string>
-    <string name="edit_note_cancel">Dismiss changes</string>
-    <!-- Search -->
-    <string name="search_hint">Search for Notes...</string>
-    <string name="label_search">Search</string>
-    <string name="empty_search_note">
-    	Your Search didnt bring up any hits...
-    </string>
+	<!-- GLOBAL -->
+	
+	    <string name="hello">This is some example-NoteBook...</string>
+	    <!-- Applications Name -->
+	    <string name="app_name">NoteBook</string>
+	    <!-- Error on Intent -->
+    	<string name="intent_error">Something went wrong with the Intent...</string>
+    	<!-- Date-Format String -->
+    	<string name="date_format">%Y-%m-%d %H:%M:%S</string>
+    	
+	<!-- GLOBAL END -->
+    
+    <!-- MAIN-ACTIVITY -->
+    	
+    	<!-- Main-Activity-Menu "Create New"-Button -->
+    	<string name="create_new">Add</string>
+    	<!-- Shown Note if no entry's made yet -->
+	    <string name="empty_list_note">
+	    	There is currently nothing in your Note-Database.\n
+	    	If you\'d like to create a new entry, use the menu and hit "Add"... 
+	    </string>
+	    <!-- Long press-Menu "Show"-Option -->
+	    <string name="longpress_show">Show</string>
+	    <!-- Long press-Menu "Edit"-Option -->
+	    <string name="longpress_edit">Edit</string>
+	    <!-- Long press-Menu "Delete"-Option -->
+	    <string name="longpress_delete">Delete</string>
+	    
+	<!-- MAIN-ACTIVITY END -->
+	
+	<!-- DISPLAY-ACTIVITY -->
+	
+		<!-- The shown Headline-string -->
+	    <string name="headline">Headline</string>
+	    <!-- The shown content-headline -->
+	    <string name="content">Content</string>
+	    <!-- Label for "Display"-Activity -->
+    	<string name="label_display_note">Display Note</string>
+    	<!-- Delete the current Note from the Display-Activity -->
+    	<string name="delete_current">Delete this Note</string>
+    	
+    	<!-- Delete-Current Dialog Message -->
+	    <string name="delete_current_dialog">Are you sure that you want to delete this Note?</string>
+	    <!-- Delete-Current Dialog yes-Option -->
+	    <string name="delete_current_dialog_yes">Yes</string>
+	    <!-- Delete-Current Dialog no-Option -->
+	    <string name="delete_current_dialog_no">No</string>
+	    
+	    <!-- Edit the current Note -->
+    	<string name="edit_current">Edit this Note</string>
+	    
+	<!-- DISPLAY-ACTIVITY END -->
+    
+    <!-- NEW-ACTIVITY -->
+    
+    	<!-- Save-Button -->
+    	<string name="save">Save!</string>
+    	<!-- Label for "New"-Activity -->
+    	<string name="label_new_note">New Note</string>
+    	
+    <!-- NEW-ACTIVITY END -->
+    
+    <!-- EDIT-ACTIVITY -->
+    
+    	<!-- Label for "Edit"-Activity -->
+    	<string name="label_edit_note">Edit Note</string>
+    	<!-- Edit Note "Save"-Button -->
+    	<string name="edit_note_save">Save changes</string>
+    	<!-- Edit Note "Dismiss"-Button -->
+    	<string name="edit_note_cancel">Dismiss changes</string>
+    	
+    <!-- EDIT-ACTIVITY END -->
+    
+    <!-- SEARCH-ACTIVITY -->
+    
+    	<!-- Label for "Search"-Activity -->
+    	<string name="label_search">Search</string>
+    	<!-- Shown Search-Hint -->
+    	<string name="search_hint">Search for Notes...</string>
+    	<!-- No Search results -->
+    	<string name="empty_search_note">
+	    	Your Search didnt bring up any hits...
+	    </string>
+    	
+    <!-- SEARCH-ACTIVITY END -->
 </resources>

@@ -19,7 +19,7 @@ public class EditNote extends Activity{
 	/** The Database Helper-class instance which is used to connect to the SQLite DB */
 	private BookDatabase db_con;
 	/** The ID of the Note that should be edited */
-	private String edit_id;
+	private long edit_id;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,9 @@ public class EditNote extends Activity{
     	// Get the ID from Intent:
     	Bundle extras = this.getIntent().getExtras();
         if (extras != null && extras.containsKey("entry_id")){
-        	edit_id = extras.getString("entry_id");
+        	edit_id = extras.getLong("entry_id");
         } else {
-        	edit_id = null;
+        	edit_id = -1;
         	Toast.makeText(getApplicationContext(),
         		this.getString(R.string.intent_error),
         		Toast.LENGTH_SHORT).show();
@@ -51,10 +51,12 @@ public class EditNote extends Activity{
     		// Save changes to Database:
     		SQLiteDatabase db = db_con.getWritableDatabase();
     		SQLiteStatement update_note = db.compileStatement(
-    				"UPDATE entry SET headline = ?, content = ? WHERE id = ?");
+    				"UPDATE entry " +
+    				"SET headline = ?, content = ?, edit_date = datetime('now', 'localtime') " +
+    				"WHERE id = ?");
     		update_note.bindString(1, headline_str);
     		update_note.bindString(2, content_str);
-    		update_note.bindString(3, edit_id);
+    		update_note.bindLong(3, edit_id);
     		// Execute:
     		update_note.execute();
     		db.close();
@@ -86,7 +88,7 @@ public class EditNote extends Activity{
     	Cursor c = null;
     	try {
     		c = db.rawQuery("SELECT headline, content FROM entry WHERE id = ?",
-        			new String[] {edit_id});
+        			new String[] {edit_id+""});
         	// Fill Views:
         	if (c.moveToNext() ){
         		headline.setText(c.getString(0));
@@ -104,7 +106,7 @@ public class EditNote extends Activity{
     @Override
     public void onStart(){
     	super.onStart();
-    	if (edit_id != null){
+    	if (edit_id != -1){
     		db_con = new BookDatabase(getApplicationContext());
         	displayEdit();
     	}

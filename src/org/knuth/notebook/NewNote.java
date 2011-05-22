@@ -58,8 +58,8 @@ public class NewNote extends Activity{
     		SQLiteDatabase db = db_con.getWritableDatabase();
     		try {
     			SQLiteStatement inset_new = db.compileStatement(
-        				"Insert into entry (headline, content)" +
-        				"values (?,?)");
+        				"Insert into entry (headline, content, edit_date)" +
+        				"values (?,?,datetime('now', 'localtime'))");
         		// Einsetzen:
         		inset_new.bindString(1, headline_str);
         		inset_new.bindString(2, content_str);
@@ -67,7 +67,7 @@ public class NewNote extends Activity{
         		long id = inset_new.executeInsert();
         		// Show the Entry:
         		Intent i = new Intent(getApplicationContext(), DisplayNote.class);
-        		i.putExtra("entry_id", id+"");
+        		i.putExtra("entry_id", id);
         		this.startActivity(i);
         		this.finish();
     		} finally {

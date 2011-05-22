@@ -50,14 +50,16 @@ public class SearchNotes extends ListActivity{
 	private void searchAndDisplay(){
 		SQLiteDatabase db = db_con.getReadableDatabase();
 		try {
-			Cursor c = db.rawQuery("SELECT headline, id as '_id' FROM entry WHERE " +
+			Cursor c = db.rawQuery("SELECT headline, strftime(?, edit_date) as 'date', id as '_id' " +
+				"FROM entry WHERE " +
 				"(headline LIKE ?) OR (content LIKE ?) " +
 				"ORDER BY id DESC",
-				new String[] {"%"+query+"%", "%"+query+"%"});
+				new String[] {this.getString(R.string.date_format),
+					"%"+query+"%", "%"+query+"%"});
 			final ListAdapter searchAdapter = new SimpleCursorAdapter(
 					this, 
 	    			android.R.layout.simple_list_item_2, c, 
-	    			new String[] {"headline", "_id"}, 
+	    			new String[] {"headline", "date"}, 
 	    			new int[] {android.R.id.text1, android.R.id.text2});
 			this.setListAdapter(searchAdapter);
 		} finally {
@@ -81,12 +83,9 @@ public class SearchNotes extends ListActivity{
 	@Override
     protected void onListItemClick(ListView l, View v, int position, long id){
     	super.onListItemClick(l, v, position, id);
-    	// Zwei-Reihen List Item beinhaltet zwei TextViews:
-    	TwoLineListItem curr = (TwoLineListItem) v;
-    	TextView curr_line = (TextView) curr.getText2();
     	// Intent:
     	Intent i = new Intent(this, DisplayNote.class);
-    	i.putExtra("entry_id", curr_line.getText().toString() );
+    	i.putExtra("entry_id", id);
     	this.startActivity(i);
     }
 	
