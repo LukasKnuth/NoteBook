@@ -18,7 +18,7 @@
 	<TableRow>
 		<EditText
 			android:id="@+id/edit_content"
-			android:singleLine="false"
+			android:inputType="textMultiLine"
 			android:lines="5"
 			android:gravity="top"
 			android:hint="@string/content"

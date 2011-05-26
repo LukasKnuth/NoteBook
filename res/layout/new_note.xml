@@ -16,10 +16,10 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/content"
-		android:singleLine="false"
 		android:lines="5"
 		android:gravity="top"
 		android:hint="@string/content"
+		android:inputType="textMultiLine"
 		/>
 	
 	<Button

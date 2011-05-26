@@ -1,5 +1,12 @@
 # Overview #
-This is a simple Android-NoteBook application. 
+This is a simple Android-NoteBook application.
+
+# Installation #
+To install the App on your Android Device, you'll need to activate third-party-apps on your
+Device (through the System-Settings).
+
+If you did that, you can simply copy the `.apk`-file
+provided in the `/bin`-folder or compile your own.
 
 ## ToDo List ##
 Things that will or should be improved:
