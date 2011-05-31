@@ -16,7 +16,6 @@ Things that will or should be improved:
 * Add "Email this"-Support
 * Add Support for Media attached on notes (Photos, Videos, Sound...)
 * Add a "Delete"-Option the the Main-Activity which can delete multiple Notes at once
-* Add some graphics
 * Reminder support for all Notes.
 * Create a Widget
 * Better Search (Mark results in the Text)
@@ -31,3 +30,4 @@ Feel free to fork, as it is GPL2.
 * Added the last edit date to the Database.
 * Added a Context Menu to the Main Activity to Show/Edit/Delete the selected Note.
 * Made the Display-, Edit- and New-Note Activity's look better.
+* Added Icons for the App.
