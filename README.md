@@ -15,7 +15,7 @@ Things that will or should be improved:
 * Add some "Share"-Options
 * Add "Email this"-Support
 * Add Support for Media attached on notes (Photos, Videos, Sound...)
-* Add a "Delete"-Option the the Main-Activity which can delete multiple Notes at once
+* Add a "Delete"-Option to the Main-Activity which can delete multiple Notes at once
 * Reminder support for all Notes.
 * Create a Widget
 * Better Search (Mark results in the Text)
